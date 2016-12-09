@@ -9,17 +9,25 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class RouteCalculatorImpl implements RouteCalculator {
 
+	@Value("${file.route}") 
+    private String routeFile;
+	
 	@Override
 	public DirectResponse calculateDirectRoute(int depSidInt, int arrSidInt) {
 		String depSid = String.valueOf(depSidInt);
 		String arrSid = String.valueOf(arrSidInt);
-		Path path = Paths.get("D://routes.txt");
 		DirectResponse directResponse = new DirectResponse();
+
+		ClassLoader classLoader = getClass().getClassLoader();
+		String pathStr = classLoader.getResource(routeFile).getPath().replaceFirst("^/(.:/)", "$1");
+		Path path = Paths.get(pathStr);
+
 		try (Stream<String> lines = Files.lines(path)) {
 			Optional<String> routeLine = lines.skip(1)
 											  .filter(a -> {
@@ -37,4 +45,8 @@ public class RouteCalculatorImpl implements RouteCalculator {
 		}
 		return directResponse;
 	}
+//	public static void main(String[] args) {
+//		RouteCalculatorImpl calculatorImpl = new RouteCalculatorImpl();
+//		calculatorImpl.calculateDirectRoute(1, 3);
+//	}
 }
