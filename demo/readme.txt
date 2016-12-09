@@ -6,6 +6,7 @@ This application uses spring boot so there is no need for any explicit web serve
 
 maven version 3.3.9
 java version 1.8.0_91
+tested on windows 7
 
 file path is read from application.properties file
 
