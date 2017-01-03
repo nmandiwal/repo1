@@ -1,3 +1,5 @@
+demo project to create a rest webservice using spring boot, spring 4, java 8 and maven
+
 This application creates a rest webservice which takes departure id and arrival id and responds with a json object telling if the direct route is available between the arrval station and departure station.
 the route information is searched from a text file sitting inside the project area.
 This application uses spring boot so there is no need for any explicit web server like tomcat to deploye the webservice.
