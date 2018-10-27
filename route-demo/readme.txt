@@ -17,3 +17,13 @@ mvn clean package spring-boot:run
 
 hit the below url to get the rest API response in json format
 http://localhost:8088/api/direct?dep_sid=1&arr_sid=3
+
+cd test-training/jenkins
+docker build -t naren-jenkins .
+run -it -p 8080:8080 --name jenkins  -v $(pwd)/jobs:/var/jenkins_home/jobs -v /Users/narmandi/chaman:/var/nicktemp  naren-jenkins
+# remove all containers
+docker rm $(docker ps -a -q)
+
+
+file system checkout jenkins docker
+/var/nicktemp
