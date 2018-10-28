@@ -31,3 +31,6 @@ cd kube-jenkins
 docker build -t naren-jenkins-kube .
 correct hostpath in j-d yaml
 kubectl apply -f jenkins-deployment.yaml
+
+delete all none images
+docker rmi $(docker images | grep "^<none>" | awk '{ print $3 }')
