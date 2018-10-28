@@ -27,3 +27,7 @@ docker rm $(docker ps -a -q)
 
 file system checkout jenkins docker
 /var/nicktemp
+cd kube-jenkins
+docker build -t naren-jenkins-kube .
+correct hostpath in j-d yaml
+kubectl apply -f jenkins-deployment.yaml
